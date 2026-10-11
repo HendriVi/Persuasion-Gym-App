@@ -1,0 +1,39 @@
+[
+  {
+    "case": "transparent-expert-recommendation",
+    "description": "A relevant expert recommendation is accurately attributed, sourced, and easy to reject.",
+    "overall": "LOW_EVIDENCE_OF_MANIPULATION",
+    "notes": "Authority/credibility rhetoric can be persuasive without manipulation."
+  },
+  {
+    "case": "false-countdown",
+    "description": "A purchase countdown resets when the page is reloaded although the offer does not expire.",
+    "overall": "SUBSTANTIAL_MANIPULATION_RISK",
+    "positive_dimensions": ["DECEPTION", "MANUFACTURED_URGENCY", "CHOICE_ARCHITECTURE_OPACITY"]
+  },
+  {
+    "case": "hard-to-cancel",
+    "description": "Enrollment is one click; cancellation requires multiple obscure screens and repeated retention prompts.",
+    "overall": "SUBSTANTIAL_MANIPULATION_RISK",
+    "positive_dimensions": ["CHOICE_ARCHITECTURE_OPACITY"]
+  },
+  {
+    "case": "fear-appeal-only",
+    "description": "A truthful road-safety campaign uses graphic imagery but clearly states evidence and leaves the decision unconstrained.",
+    "overall": "LOW_EVIDENCE_OF_MANIPULATION",
+    "notes": "Emotional intensity alone does not establish manipulation."
+  },
+  {
+    "case": "unverified-scarcity",
+    "description": "An advertisement says 'only two left' but inventory cannot be checked.",
+    "overall": "INDETERMINATE",
+    "notes": "Urgency cue is observed; manufactured urgency depends on factual verification."
+  },
+  {
+    "case": "explicit-threat",
+    "description": "Refusal triggers a serious threatened penalty controlled by the influencer.",
+    "overall": "SUBSTANTIAL_MANIPULATION_RISK",
+    "positive_dimensions": ["COERCIVE_PRESSURE"],
+    "notes": "Label coercion explicitly rather than hiding it under manipulation."
+  }
+]

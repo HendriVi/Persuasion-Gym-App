@@ -1,0 +1,7 @@
+{
+  "attempt_id":"att_fixture_001","timestamp":"2026-10-08T08:00:00Z","item_id":"fixture_001","answer_key_version":"1.0","answer_key_status":"FROZEN_VALID",
+  "skill_ids":["INT.function_intent_separation"],"domain":"advertising","modality":"TEXT","training_mode":"DISCRIMINATE","transfer_level":"NONE",
+  "transfer_metadata":{"origin_domain":null,"current_domain":"advertising","origin_modality":null,"current_modality":"TEXT","source_type_changed":false,"emotional_tone_changed":false,"explicitness_changed":false,"social_context_changed":false,"distractor_structure_changed":false},
+  "delayed_retrieval":false,"delay_days":null,"assistance_level":"UNAIDED","committed_before_feedback":true,"confidence_captured_before_feedback":true,"mastery_eligible":true,
+  "dimensions":[{"dimension_id":"intent","skill_id":"INT.function_intent_separation","score":1,"correct_binary":true,"confidence":80,"error_tags":[],"scoreable":true,"critical_error":false}],"notes":""
+}

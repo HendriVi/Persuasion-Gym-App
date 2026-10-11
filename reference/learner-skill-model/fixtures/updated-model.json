@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1.0",
+  "learner_id": "learner_fixture",
+  "created_at": "2026-10-08T00:00:00Z",
+  "updated_at": "2026-10-08T08:24:26.944361Z",
+  "attempts": [
+    {
+      "attempt_id": "att_fixture_001",
+      "timestamp": "2026-10-08T08:00:00Z",
+      "item_id": "fixture_001",
+      "answer_key_version": "1.0",
+      "answer_key_status": "FROZEN_VALID",
+      "skill_ids": [
+        "INT.function_intent_separation"
+      ],
+      "domain": "advertising",
+      "modality": "TEXT",
+      "training_mode": "DISCRIMINATE",
+      "transfer_level": "NONE",
+      "transfer_metadata": {
+        "origin_domain": null,
+        "current_domain": "advertising",
+        "origin_modality": null,
+        "current_modality": "TEXT",
+        "source_type_changed": false,
+        "emotional_tone_changed": false,
+        "explicitness_changed": false,
+        "social_context_changed": false,
+        "distractor_structure_changed": false
+      },
+      "delayed_retrieval": false,
+      "delay_days": null,
+      "assistance_level": "UNAIDED",
+      "committed_before_feedback": true,
+      "confidence_captured_before_feedback": true,
+      "mastery_eligible": true,
+      "dimensions": [
+        {
+          "dimension_id": "intent",
+          "skill_id": "INT.function_intent_separation",
+          "score": 1,
+          "correct_binary": true,
+          "confidence": 80,
+          "error_tags": [],
+          "scoreable": true,
+          "critical_error": false
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "skills": [
+    {
+      "skill_id": "INT.function_intent_separation",
+      "state": "INTRODUCED",
+      "state_evidence_refs": [
+        "att_fixture_001"
+      ],
+      "summary": {
+        "eligible_attempts": 1,
+        "unaided_attempts": 1,
+        "rolling_attempts": 1,
+        "rolling_accuracy": 1.0,
+        "high_confidence_errors": 0
+      },
+      "calibration": {
+        "n": 1,
+        "label": "INSUFFICIENT_DATA",
+        "mean_brier": 0.03999999999999998,
+        "mean_signed_error": -0.19999999999999996,
+        "mean_absolute_error": 0.19999999999999996
+      },
+      "transfer": {
+        "eligible_transfer_attempts": 0,
+        "distinct_transfer_contexts": 0,
+        "transfer_accuracy": null,
+        "latest_two_no_critical_overclaim": null
+      },
+      "delayed_retrieval": {
+        "eligible_delayed_attempts": 0,
+        "distinct_dates": 0,
+        "latest_delayed_correct": null
+      },
+      "context_slices": [],
+      "last_updated": "2026-10-08T08:24:26.944361Z"
+    }
+  ],
+  "recurring_error_patterns": [],
+  "revision_events": [],
+  "next_target_recommendations": []
+}

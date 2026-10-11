@@ -1,0 +1,52 @@
+{
+  "policy_version": "1.0.0",
+  "operational_definition": "Influence that materially subverts, bypasses, exploits, or impairs informed and meaningfully voluntary decision-making.",
+  "overall_statuses": [
+    "LOW_EVIDENCE_OF_MANIPULATION",
+    "SOME_MANIPULATION_RISK",
+    "SUBSTANTIAL_MANIPULATION_RISK",
+    "INDETERMINATE"
+  ],
+  "dimensions": {
+    "DECEPTION": {
+      "question": "Is materially false, fabricated, disguised, or misleading representation used in the influence attempt?"
+    },
+    "MATERIAL_OMISSION": {
+      "question": "Is material information withheld or obscured such that its disclosure could materially change understanding or choice?"
+    },
+    "INFORMATION_ASYMMETRY_EXPLOITATION": {
+      "question": "Is a hidden information, data, incentive, or dependency advantage strategically exploited?"
+    },
+    "COERCIVE_PRESSURE": {
+      "question": "Do threats, penalties, severe constraints, or imposed costs materially reduce meaningful freedom to choose otherwise?"
+    },
+    "MANUFACTURED_URGENCY": {
+      "question": "Is urgency or scarcity fabricated, exaggerated, or structured to suppress verification beyond what the real situation warrants?"
+    },
+    "DISPROPORTIONATE_EMOTIONAL_LEVERAGE": {
+      "question": "Does emotional pressure materially overwhelm or suppress meaningful evaluation rather than merely engage emotion?"
+    },
+    "IDENTITY_SOCIAL_SANCTION_PRESSURE": {
+      "question": "Are belonging, shame, ostracism, loyalty, status, or moral sanctions used to materially constrain refusal or disagreement?"
+    },
+    "CHOICE_ARCHITECTURE_OPACITY": {
+      "question": "Do defaults, salience, friction, repeated prompts, or hidden controls materially distort or impair informed or voluntary choice?"
+    },
+    "EVIDENCE_CREDIBILITY_THEATER": {
+      "question": "Are expert, scientific, statistical, institutional, testimonial, or visual cues used to create materially overstated evidential credibility?"
+    }
+  },
+  "presence_values": ["YES", "NO", "UNKNOWN"],
+  "severity_values": ["NONE", "LOW", "MODERATE", "HIGH", "SEVERE"],
+  "intent_statuses": ["EXPLICIT", "DOCUMENTED", "STRONGLY_INFERRED", "WEAKLY_INFERRED", "UNKNOWN"],
+  "forbidden_shortcuts": [
+    "emotion implies manipulation",
+    "falsehood implies manipulation",
+    "behavior change implies manipulation",
+    "nudge implies manipulation",
+    "framing implies manipulation",
+    "disagreement implies manipulation",
+    "tactic implies intent"
+  ],
+  "legal_firewall": true
+}

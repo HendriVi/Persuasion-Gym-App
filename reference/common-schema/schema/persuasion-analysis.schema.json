@@ -1,0 +1,2572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persuasion-gym.local/schema/persuasion-analysis.schema.json",
+  "title": "Persuasion Gym Canonical Analysis Object",
+  "description": "Single machine-readable contract for combining specialist outputs while preserving provenance, uncertainty, scope, and level-of-analysis boundaries.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "created_at",
+    "artifact",
+    "claims",
+    "rhetoric",
+    "argument",
+    "verification",
+    "mechanisms",
+    "systems",
+    "manipulation",
+    "countermeasures",
+    "assertions",
+    "sources",
+    "evidence",
+    "routing",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "analysis_id": {
+      "$ref": "#/$defs/ObjectId"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ontology_version": {
+      "type": "string",
+      "default": "0.1.0"
+    },
+    "artifact": {
+      "$ref": "#/$defs/Artifact"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Claim"
+      }
+    },
+    "rhetoric": {
+      "$ref": "#/$defs/RhetoricModule"
+    },
+    "argument": {
+      "$ref": "#/$defs/ArgumentModule"
+    },
+    "verification": {
+      "$ref": "#/$defs/VerificationModule"
+    },
+    "mechanisms": {
+      "$ref": "#/$defs/MechanismModule"
+    },
+    "systems": {
+      "$ref": "#/$defs/SystemsModule"
+    },
+    "manipulation": {
+      "$ref": "#/$defs/ManipulationModule"
+    },
+    "countermeasures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Countermeasure"
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AnalysisAssertion"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SourceRecord"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/EvidenceItem"
+      }
+    },
+    "training": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TrainingModule"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "routing": {
+      "$ref": "#/$defs/RoutingModule"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    }
+  },
+  "$defs": {
+    "ObjectId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*_[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "StringRef": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*_[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "NonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Confidence": {
+      "oneOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Scope": {
+      "type": "object",
+      "properties": {
+        "population": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "context": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "outcome": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "time_scale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "domain": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "EpistemicStatus": {
+      "type": "string",
+      "enum": [
+        "OBSERVED",
+        "ANNOTATED",
+        "DERIVED",
+        "INFERRED",
+        "HYPOTHESIZED",
+        "REPORTED",
+        "UNKNOWN"
+      ]
+    },
+    "VerificationStatus": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "VERIFIED_WITH_QUALIFICATION",
+        "CONTRADICTED",
+        "UNVERIFIED",
+        "OUTDATED",
+        "UNRESOLVED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "EvidenceStrength": {
+      "type": "string",
+      "enum": [
+        "ESTABLISHED",
+        "SUPPORTED",
+        "PLAUSIBLE",
+        "SPECULATIVE",
+        "MIXED",
+        "UNKNOWN"
+      ]
+    },
+    "EvidenceBasis": {
+      "type": "string",
+      "enum": [
+        "EXPERIMENTAL",
+        "MECHANISTIC",
+        "OBSERVATIONAL",
+        "EXTRAPOLATED",
+        "THEORETICAL",
+        "DOCUMENTARY",
+        "SELF_REPORT",
+        "BEHAVIORAL",
+        "MIXED",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "ActivationStatus": {
+      "type": "string",
+      "enum": [
+        "NOT_ASSESSED",
+        "CANDIDATE",
+        "EPISODE_CONSISTENT",
+        "SUPPORTED_IN_EPISODE",
+        "EXPERIMENTALLY_IDENTIFIED",
+        "CONTRADICTED_IN_EPISODE"
+      ]
+    },
+    "PersonEvidenceMode": {
+      "type": "string",
+      "enum": [
+        "MEASURED",
+        "SELF_REPORTED",
+        "BEHAVIORALLY_SUPPORTED",
+        "INDIRECTLY_INFERRED",
+        "NONE",
+        "UNKNOWN"
+      ]
+    },
+    "IntentStatus": {
+      "type": "string",
+      "enum": [
+        "EXPLICIT",
+        "DOCUMENTED",
+        "STRONGLY_INFERRED",
+        "WEAKLY_INFERRED",
+        "UNKNOWN"
+      ]
+    },
+    "DependencyStatus": {
+      "type": "string",
+      "enum": [
+        "COMPLETE",
+        "DEPENDENCY_INCOMPLETE",
+        "REANALYSIS_REQUIRED",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "TriState": {
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO",
+        "UNCERTAIN"
+      ]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "LOW",
+        "MODERATE",
+        "HIGH",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "ArtifactSegment": {
+      "type": "object",
+      "properties": {
+        "segment_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "SPAN",
+            "SECTION",
+            "ARTIFACT",
+            "CROSS_ARTIFACT",
+            "FRAME",
+            "TIMESTAMP_RANGE",
+            "VISUAL_REGION",
+            "AUDIO_REGION"
+          ]
+        },
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "anchor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parent_segment_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "segment_id",
+        "unit",
+        "channels"
+      ]
+    },
+    "Artifact": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "artifact_type": {
+          "type": "string",
+          "enum": [
+            "SPEECH",
+            "AD",
+            "POST",
+            "ARTICLE",
+            "HEADLINE",
+            "NEGOTIATION",
+            "VIDEO",
+            "IMAGE",
+            "AUDIO",
+            "DEBATE",
+            "EMAIL",
+            "OTHER"
+          ]
+        },
+        "language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "completeness": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "EXCERPT",
+            "UNKNOWN"
+          ]
+        },
+        "provenance_status": {
+          "type": "string",
+          "enum": [
+            "KNOWN",
+            "PARTIAL",
+            "UNKNOWN"
+          ]
+        },
+        "communicator_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "audience_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "context_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "available_modalities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "TEXT",
+              "IMAGE",
+              "AUDIO",
+              "VIDEO",
+              "MULTIMODAL"
+            ]
+          }
+        },
+        "unavailable_modalities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactSegment"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "completeness",
+        "provenance_status",
+        "available_modalities",
+        "unavailable_modalities",
+        "segments"
+      ]
+    },
+    "Claim": {
+      "type": "object",
+      "properties": {
+        "claim_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "EXPLICIT",
+            "PRESUPPOSED",
+            "IMPLIED",
+            "ANALYSIS_INTRODUCED"
+          ]
+        },
+        "claim_type": {
+          "type": "string",
+          "enum": [
+            "FACTUAL",
+            "PREDICTIVE",
+            "CAUSAL",
+            "NORMATIVE",
+            "IDENTITY_MOTIVE",
+            "DEFINITIONAL",
+            "ATTRIBUTION",
+            "CURRENT_STATE",
+            "OTHER"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "ARTIFACT",
+            "AI_ANALYSIS",
+            "ATTRIBUTION_PROVENANCE",
+            "EMPIRICAL_MECHANISM",
+            "EXTERNAL_CONTEXT"
+          ]
+        },
+        "materiality": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        },
+        "verification_record_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "text",
+        "segment_refs",
+        "role",
+        "claim_type",
+        "origin",
+        "materiality",
+        "assertion_refs"
+      ]
+    },
+    "RhetoricalAnnotation": {
+      "type": "object",
+      "properties": {
+        "annotation_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "segment_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "taxonomy_id": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}\\.[a-z0-9_]+$"
+        },
+        "family": {
+          "type": "string",
+          "enum": [
+            "FRM",
+            "NAR",
+            "PRG",
+            "LEX",
+            "SRC",
+            "SOC",
+            "AFF",
+            "ACT",
+            "REP",
+            "EVD",
+            "CMP",
+            "VIS"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OBSERVED",
+            "STRONGLY_INFERRED",
+            "TENTATIVE",
+            "UNRESOLVED"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "salience": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        },
+        "claim_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "action_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "actor_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "possible_overlaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternative_readings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "not_inferred": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "annotation_id",
+        "segment_ref",
+        "taxonomy_id",
+        "family",
+        "status",
+        "functions",
+        "salience",
+        "claim_refs",
+        "action_refs",
+        "actor_refs",
+        "possible_overlaps",
+        "alternative_readings",
+        "not_inferred",
+        "assertion_refs"
+      ]
+    },
+    "RhetoricModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "analysis_mode": {
+          "type": "string",
+          "enum": [
+            "QUICK",
+            "STANDARD",
+            "DEEP"
+          ]
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RhetoricalAnnotation"
+          }
+        },
+        "architecture": {
+          "type": "object",
+          "properties": {
+            "opening_function": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "problem_construction": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source_positioning": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "evidence_pattern": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "social_identity_pattern": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "affective_pattern": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "option_structure": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "action_transition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "recurrence_pattern": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "closing_function": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "synthesis": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "higher_order_functions": {
+          "type": "object",
+          "properties": {
+            "ethos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ObjectId"
+              }
+            },
+            "pathos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ObjectId"
+              }
+            },
+            "logos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ObjectId"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "ethos",
+            "pathos",
+            "logos"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "analysis_mode",
+        "annotations",
+        "architecture",
+        "higher_order_functions",
+        "limitations"
+      ]
+    },
+    "ArgumentFinding": {
+      "type": "object",
+      "properties": {
+        "finding_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "finding_type": {
+          "type": "string",
+          "enum": [
+            "GAP",
+            "LEAP",
+            "ASSUME",
+            "FALLACY",
+            "CONFLICT",
+            "OPINION",
+            "CANNOT_ASSESS"
+          ]
+        },
+        "anchor_segment_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "claim_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "finding_id",
+        "finding_type",
+        "anchor_segment_refs",
+        "claim_refs",
+        "description",
+        "assertion_refs"
+      ]
+    },
+    "ArgumentRecord": {
+      "type": "object",
+      "properties": {
+        "argument_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "conclusion_claim_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "ground_claim_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "warrant_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "backing_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "qualifier_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "rebuttal_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "argument_id",
+        "conclusion_claim_ref",
+        "ground_claim_refs",
+        "warrant_refs",
+        "backing_refs",
+        "qualifier_refs",
+        "rebuttal_refs",
+        "assertion_refs"
+      ]
+    },
+    "ArgumentModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArgumentRecord"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArgumentFinding"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "arguments",
+        "findings",
+        "limitations"
+      ]
+    },
+    "VerificationRecord": {
+      "type": "object",
+      "properties": {
+        "verification_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "claim_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "status": {
+          "$ref": "#/$defs/VerificationStatus"
+        },
+        "time_sensitive": {
+          "type": "boolean"
+        },
+        "authoritative_source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "supporting_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "contradicting_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "qualification": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "correction": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "downstream_impact": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "QUALIFICATION_ONLY",
+            "REANALYSIS_REQUIRED",
+            "UNRESOLVED"
+          ]
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "verification_id",
+        "claim_ref",
+        "status",
+        "time_sensitive",
+        "authoritative_source_refs",
+        "supporting_evidence_refs",
+        "contradicting_evidence_refs",
+        "scope",
+        "downstream_impact",
+        "assertion_refs"
+      ]
+    },
+    "VerificationModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VerificationRecord"
+          }
+        },
+        "gate": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "PASS_WITH_QUALIFICATIONS",
+            "FAIL",
+            "UNRESOLVED"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "records",
+        "gate",
+        "limitations"
+      ]
+    },
+    "MechanismPathway": {
+      "type": "object",
+      "properties": {
+        "pathway_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "input_feature_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "registry_entry_id": {
+          "type": "string"
+        },
+        "registry_entry_kind": {
+          "type": "string",
+          "enum": [
+            "MECHANISM",
+            "PROCESSING_REGIME",
+            "ROBUST_EFFECT_MULTIPLE_MECHANISMS",
+            "RESISTANCE_PROCESS",
+            "UNRESOLVED"
+          ]
+        },
+        "ranking": {
+          "type": "string",
+          "enum": [
+            "BEST_SUPPORTED_CANDIDATE",
+            "CO_PLAUSIBLE",
+            "WEAKLY_SUPPORTED",
+            "DISFAVORED",
+            "UNRESOLVED"
+          ]
+        },
+        "target_constructs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mechanism_description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mediators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moderators_present": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moderators_absent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moderators_unknown": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confounders_or_alternative_causes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proximal_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "distal_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "temporal_order_expected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "population_evidence": {
+          "type": "object",
+          "properties": {
+            "effect_grade": {
+              "type": "string",
+              "enum": [
+                "E0",
+                "E1",
+                "E2",
+                "E3",
+                "E4"
+              ]
+            },
+            "mechanism_grade": {
+              "type": "string",
+              "enum": [
+                "M0",
+                "M1",
+                "M2",
+                "M3"
+              ]
+            },
+            "population_scope": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "domain_scope": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "notes": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "effect_grade",
+            "mechanism_grade"
+          ]
+        },
+        "context_fit": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "UNKNOWN"
+          ]
+        },
+        "person_specific_activation": {
+          "$ref": "#/$defs/ActivationStatus"
+        },
+        "person_evidence_mode": {
+          "$ref": "#/$defs/PersonEvidenceMode"
+        },
+        "supporting_episode_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "contradictory_episode_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "alternative_pathway_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "discriminating_predictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_that_would_strengthen": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_that_would_weaken": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "best_discrimination_test": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unresolved_links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "pathway_id",
+        "input_feature_refs",
+        "registry_entry_id",
+        "registry_entry_kind",
+        "ranking",
+        "target_constructs",
+        "mediators",
+        "moderators_present",
+        "moderators_absent",
+        "moderators_unknown",
+        "confounders_or_alternative_causes",
+        "proximal_outcomes",
+        "distal_outcomes",
+        "temporal_order_expected",
+        "population_evidence",
+        "context_fit",
+        "person_specific_activation",
+        "person_evidence_mode",
+        "supporting_episode_evidence_refs",
+        "contradictory_episode_evidence_refs",
+        "alternative_pathway_refs",
+        "discriminating_predictions",
+        "evidence_that_would_strengthen",
+        "evidence_that_would_weaken",
+        "unresolved_links",
+        "assertion_refs"
+      ]
+    },
+    "MechanismModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "pathways": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MechanismPathway"
+          }
+        },
+        "best_supported_pathway_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "co_plausible_pathway_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "disfavored_pathway_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "unresolved_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "what_is_not_established": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "pathways",
+        "best_supported_pathway_refs",
+        "co_plausible_pathway_refs",
+        "disfavored_pathway_refs",
+        "unresolved_questions",
+        "what_is_not_established",
+        "limitations"
+      ]
+    },
+    "SystemVariable": {
+      "type": "object",
+      "properties": {
+        "variable_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "MESSAGE",
+            "PERSON",
+            "BEHAVIOR",
+            "DYAD",
+            "GROUP",
+            "NETWORK",
+            "PLATFORM",
+            "INSTITUTION",
+            "SYSTEM"
+          ]
+        },
+        "ontology_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "definition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "indicator_or_measure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OBSERVED",
+            "LATENT",
+            "INFERRED",
+            "HYPOTHESIZED",
+            "UNRESOLVED"
+          ]
+        },
+        "actual_or_perceived": {
+          "type": "string",
+          "enum": [
+            "ACTUAL",
+            "PERCEIVED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "stock_or_flow": {
+          "type": "string",
+          "enum": [
+            "STOCK",
+            "FLOW",
+            "AUXILIARY",
+            "UNKNOWN"
+          ]
+        },
+        "time_scale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "variable_id",
+        "label",
+        "level",
+        "status",
+        "actual_or_perceived",
+        "stock_or_flow",
+        "evidence_refs",
+        "assertion_refs"
+      ]
+    },
+    "SystemRelation": {
+      "type": "object",
+      "properties": {
+        "relation_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "from_variable_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "to_variable_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "sign": {
+          "type": "string",
+          "enum": [
+            "POSITIVE",
+            "NEGATIVE",
+            "NON_MONOTONIC",
+            "UNKNOWN"
+          ]
+        },
+        "relation_type": {
+          "type": "string",
+          "enum": [
+            "CAUSAL",
+            "ASSOCIATIONAL",
+            "SELECTION",
+            "RANKING",
+            "EXPOSURE",
+            "NORMATIVE",
+            "INFORMATIONAL",
+            "INSTITUTIONAL",
+            "MEASUREMENT",
+            "UNKNOWN"
+          ]
+        },
+        "temporal_direction_supported": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "UNKNOWN"
+          ]
+        },
+        "delay": {
+          "type": "string",
+          "enum": [
+            "NONE_OR_NEGLIGIBLE",
+            "SHORT",
+            "MEDIUM",
+            "LONG",
+            "VARIABLE",
+            "UNKNOWN"
+          ]
+        },
+        "mechanism_or_structure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_strength": {
+          "$ref": "#/$defs/EvidenceStrength"
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/EvidenceBasis"
+        },
+        "context_fit": {
+          "type": "string",
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "UNKNOWN"
+          ]
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "conditions_or_moderators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternative_explanations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disconfirming_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "from_variable_ref",
+        "to_variable_ref",
+        "sign",
+        "relation_type",
+        "temporal_direction_supported",
+        "delay",
+        "evidence_strength",
+        "evidence_basis",
+        "context_fit",
+        "scope",
+        "conditions_or_moderators",
+        "alternative_explanations",
+        "disconfirming_evidence",
+        "evidence_refs",
+        "assertion_refs"
+      ]
+    },
+    "FeedbackLoop": {
+      "type": "object",
+      "properties": {
+        "loop_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "relation_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          },
+          "minItems": 2
+        },
+        "closed_path_verified": {
+          "type": "boolean"
+        },
+        "polarity": {
+          "type": "string",
+          "enum": [
+            "REINFORCING",
+            "BALANCING",
+            "MIXED_OR_NONLINEAR",
+            "UNRESOLVED"
+          ]
+        },
+        "weakest_edge_strength": {
+          "$ref": "#/$defs/EvidenceStrength"
+        },
+        "dominant_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "delays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "predicted_dynamic_signature": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_that_would_break_loop": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "loop_id",
+        "label",
+        "relation_refs",
+        "closed_path_verified",
+        "polarity",
+        "weakest_edge_strength",
+        "dominant_conditions",
+        "delays",
+        "evidence_that_would_break_loop",
+        "assertion_refs"
+      ]
+    },
+    "SystemsModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "question": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "boundary": {
+          "type": "object",
+          "properties": {
+            "units_of_analysis": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "inside": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "outside": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "exogenous_inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "endogenous_variables": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "rationale": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "units_of_analysis",
+            "inside",
+            "outside",
+            "exogenous_inputs",
+            "endogenous_variables"
+          ]
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SystemVariable"
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SystemRelation"
+          }
+        },
+        "loops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FeedbackLoop"
+          }
+        },
+        "major_uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "discriminating_tests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "what_is_not_established": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "boundary",
+        "variables",
+        "relations",
+        "loops",
+        "major_uncertainties",
+        "discriminating_tests",
+        "what_is_not_established",
+        "limitations"
+      ]
+    },
+    "ManipulationDimension": {
+      "type": "object",
+      "properties": {
+        "dimension_id": {
+          "type": "string",
+          "enum": [
+            "DECEPTION",
+            "MATERIAL_OMISSION",
+            "INFORMATION_ASYMMETRY_EXPLOITATION",
+            "COERCIVE_PRESSURE",
+            "MANUFACTURED_URGENCY",
+            "DISPROPORTIONATE_EMOTIONAL_LEVERAGE",
+            "IDENTITY_SOCIAL_SANCTION_PRESSURE",
+            "CHOICE_ARCHITECTURE_OPACITY",
+            "EVIDENCE_CREDIBILITY_THEATER"
+          ]
+        },
+        "present": {
+          "$ref": "#/$defs/TriState"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "dimension_id",
+        "present",
+        "severity",
+        "evidence_refs",
+        "assertion_refs"
+      ]
+    },
+    "ManipulationModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        },
+        "overall": {
+          "type": "string",
+          "enum": [
+            "LOW_EVIDENCE_OF_MANIPULATION",
+            "SOME_MANIPULATION_RISK",
+            "SUBSTANTIAL_MANIPULATION_RISK",
+            "INDETERMINATE"
+          ]
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ManipulationDimension"
+          }
+        },
+        "intent_status": {
+          "$ref": "#/$defs/IntentStatus"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "dependency_status",
+        "overall",
+        "dimensions",
+        "intent_status",
+        "limitations"
+      ]
+    },
+    "Countermeasure": {
+      "type": "object",
+      "properties": {
+        "countermeasure_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "label": {
+          "type": "string"
+        },
+        "countermeasure_type": {
+          "type": "string",
+          "enum": [
+            "SLOW_DOWN",
+            "LABEL_TACTIC",
+            "SOURCE_CHECK",
+            "EVIDENCE_CHECK",
+            "ALTERNATIVE_FRAME",
+            "AROUSAL_LABELING",
+            "OMISSION_CHECK",
+            "FRICTION",
+            "INOCULATION",
+            "PLURAL_EXPOSURE",
+            "OTHER"
+          ]
+        },
+        "target_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_strength": {
+          "$ref": "#/$defs/EvidenceStrength"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "countermeasure_id",
+        "label",
+        "countermeasure_type",
+        "target_refs",
+        "evidence_strength",
+        "evidence_refs",
+        "assertion_refs"
+      ]
+    },
+    "AnalysisAssertion": {
+      "type": "object",
+      "properties": {
+        "assertion_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "subject_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "predicate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "object_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "object_value": {},
+        "origin_skill": {
+          "type": "string",
+          "minLength": 1
+        },
+        "epistemic_status": {
+          "$ref": "#/$defs/EpistemicStatus"
+        },
+        "evidence_strength": {
+          "$ref": "#/$defs/EvidenceStrength"
+        },
+        "evidence_basis": {
+          "$ref": "#/$defs/EvidenceBasis"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/VerificationStatus"
+        },
+        "person_activation_status": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ActivationStatus"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "intent_status": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/IntentStatus"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "alternative_assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "assertion_id",
+        "subject_ref",
+        "predicate",
+        "origin_skill",
+        "epistemic_status",
+        "evidence_strength",
+        "evidence_basis",
+        "verification_status",
+        "confidence",
+        "scope",
+        "evidence_refs",
+        "alternative_assertion_refs"
+      ],
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "required": [
+                "object_ref"
+              ]
+            },
+            {
+              "required": [
+                "object_value"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "SourceRecord": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "PRIMARY_RESEARCH",
+            "SYSTEMATIC_REVIEW",
+            "META_ANALYSIS",
+            "OFFICIAL_RECORD",
+            "REGULATOR",
+            "DATASET",
+            "NEWS",
+            "WEBPAGE",
+            "BOOK",
+            "USER_SUPPLIED_ARTIFACT",
+            "INTERNAL_ANALYSIS",
+            "OTHER"
+          ]
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "author_or_owner": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publisher": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "published_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_uri": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_tier": {
+          "type": "string",
+          "enum": [
+            "PRIMARY_CANONICAL",
+            "HIGH_QUALITY_SECONDARY",
+            "SECONDARY",
+            "TERTIARY",
+            "UNKNOWN"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_type",
+        "source_tier"
+      ]
+    },
+    "EvidenceItem": {
+      "type": "object",
+      "properties": {
+        "evidence_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "ARTIFACT_SPAN",
+            "SOURCE_FINDING",
+            "MEASUREMENT",
+            "SELF_REPORT",
+            "BEHAVIORAL_OBSERVATION",
+            "EXPERIMENTAL_RESULT",
+            "SYSTEM_RELATION_EVIDENCE",
+            "OTHER"
+          ]
+        },
+        "source_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "segment_ref": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ObjectId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supports_assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "contradicts_assertion_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "kind",
+        "supports_assertion_refs",
+        "contradicts_assertion_refs",
+        "scope",
+        "limitations"
+      ]
+    },
+    "TrainingDimensionScore": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "string"
+        },
+        "score_0_3": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 3
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "error_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "dimension",
+        "score_0_3",
+        "error_tags"
+      ]
+    },
+    "TrainingSession": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PRACTICE",
+            "ASSESSMENT",
+            "REPAIR",
+            "TRANSFER",
+            "REVIEW"
+          ]
+        },
+        "primary_skill_id": {
+          "type": "string"
+        },
+        "secondary_skill_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "item_id": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "artifact_ref": {
+          "$ref": "#/$defs/ObjectId"
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "DETECT",
+            "DECOMPOSE",
+            "MECHANISM",
+            "DISCRIMINATE",
+            "VERIFY",
+            "COUNTERANALYSE",
+            "COUNTERFRAME",
+            "RESIST",
+            "SYSTEMS",
+            "PRODUCE",
+            "TRANSFER"
+          ]
+        },
+        "answer_key_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "answer_key_state": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "VALIDATED",
+            "VALIDATED_WITH_UNCERTAINTY",
+            "REVIEW_REQUIRED",
+            "RETIRED"
+          ]
+        },
+        "response_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_0_100": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hint_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "unaided": {
+          "type": "boolean"
+        },
+        "scored_before_feedback": {
+          "type": "boolean"
+        },
+        "dimension_scores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TrainingDimensionScore"
+          }
+        },
+        "error_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mastery_state_before": {
+          "type": "string",
+          "enum": [
+            "UNSEEN",
+            "INTRODUCED",
+            "RETRIEVING",
+            "DISCRIMINATING",
+            "PROVISIONAL_MASTERY",
+            "TRANSFER_VERIFIED",
+            "DELAYED_VERIFIED",
+            "NEEDS_REPAIR"
+          ]
+        },
+        "mastery_state_after": {
+          "type": "string",
+          "enum": [
+            "UNSEEN",
+            "INTRODUCED",
+            "RETRIEVING",
+            "DISCRIMINATING",
+            "PROVISIONAL_MASTERY",
+            "TRANSFER_VERIFIED",
+            "DELAYED_VERIFIED",
+            "NEEDS_REPAIR"
+          ]
+        },
+        "answer_key_review_required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session_id",
+        "mode",
+        "primary_skill_id",
+        "secondary_skill_ids",
+        "item_id",
+        "artifact_ref",
+        "operation",
+        "answer_key_state",
+        "hint_level",
+        "unaided",
+        "scored_before_feedback",
+        "dimension_scores",
+        "error_tags",
+        "mastery_state_before",
+        "mastery_state_after",
+        "answer_key_review_required"
+      ]
+    },
+    "TrainingModule": {
+      "type": "object",
+      "properties": {
+        "module_version": {
+          "type": "string"
+        },
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TrainingSession"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_version",
+        "sessions"
+      ]
+    },
+    "RoutingFlag": {
+      "type": "object",
+      "properties": {
+        "route": {
+          "type": "string",
+          "enum": [
+            "RHETORICAL_STRUCTURE",
+            "CRITICAL_THINKING",
+            "FACT_CHECK",
+            "DE_SPIN",
+            "PERSUASION_MECHANISM",
+            "MANIPULATION_ASSESSMENT",
+            "INFLUENCE_SYSTEMS",
+            "PERSUASION_TRAINING",
+            "SCIENTIFIC_RESEARCH"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "affected_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectId"
+          }
+        },
+        "required_action": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OPEN",
+            "RESOLVED",
+            "CANCELLED"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "route",
+        "reason",
+        "affected_refs",
+        "status"
+      ]
+    },
+    "RoutingModule": {
+      "type": "object",
+      "properties": {
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoutingFlag"
+          }
+        },
+        "overall_dependency_status": {
+          "$ref": "#/$defs/DependencyStatus"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "flags",
+        "overall_dependency_status"
+      ]
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "producer_versions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "schema_compatibility": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "human_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "human_summary_is_non_authoritative": {
+          "const": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "producer_versions",
+        "schema_compatibility",
+        "notes",
+        "human_summary_is_non_authoritative"
+      ]
+    }
+  }
+}

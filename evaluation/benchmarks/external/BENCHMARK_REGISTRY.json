@@ -1,0 +1,114 @@
+{
+  "registry_version": "1.0.0",
+  "verified_date": "2026-10-08",
+  "benchmark_entries": [
+    {
+      "id": "semeval_2020_task11",
+      "title": "SemEval-2020 Task 11: Propaganda Techniques Corpus",
+      "competency": "rhetoric",
+      "official_url": "https://propaganda.qcri.org/semeval2020-task11/",
+      "repo": "https://github.com/daojiaxu/semeval_11",
+      "task": "Span identification and propaganda technique classification",
+      "official_metric": "Subtask official scorer; span F1 and technique classification",
+      "license": "Scorer repository Apache-2.0; DATA RIGHTS REQUIRE SEPARATE VERIFICATION",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Download authorized dataset through task sources; use official scoring script; do not equate task labels with entire ontology."
+    },
+    {
+      "id": "semeval_2023_task3",
+      "title": "SemEval-2023 Task 3: multilingual news framing/persuasion",
+      "competency": "rhetoric",
+      "official_url": "https://aclanthology.org/2023.semeval-1.317/",
+      "repo": "https://github.com/kinit-sk/semeval2023-task3-persuasion-techniques",
+      "task": "Paragraph-level 23-technique classification; multilingual framing",
+      "official_metric": "Official subtask metric; generally multi-label F1 for persuasion",
+      "license": "ACCESS/RIGHTS REQUIRE VERIFICATION WITH ORGANIZERS",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Contact organizers for original data, according to referenced implementation repository; use approved files and official evaluation."
+    },
+    {
+      "id": "mafalda",
+      "title": "MAFALDA: annotated fallacy classification",
+      "competency": "argument",
+      "official_url": "https://github.com/ChadiHelwe/MAFALDA",
+      "repo": "https://github.com/ChadiHelwe/MAFALDA",
+      "task": "Fallacy identification with subjective multi-answer labeling",
+      "official_metric": "Official ambiguity-aware evaluation; preserve multi-answer acceptance",
+      "license": "Verify repository and dataset licensing before commercial use",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Retrieve under approved terms; do not coerce ambiguous labels into one exclusive answer."
+    },
+    {
+      "id": "folio",
+      "title": "FOLIO: first-order logic natural-language inference",
+      "competency": "argument",
+      "official_url": "https://github.com/Yale-LILY/FOLIO",
+      "repo": "https://github.com/Yale-LILY/FOLIO",
+      "task": "Entailment, contradiction, unknown under supplied premises",
+      "official_metric": "Dataset-native logical inference accuracy",
+      "license": "Verify dataset and code licenses",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Use released train/validation data for development; avoid unpublished test leakage."
+    },
+    {
+      "id": "averitec",
+      "title": "AVeriTeC: real-world web-based fact verification",
+      "competency": "verification",
+      "official_url": "https://github.com/MichSchli/AVeriTeC",
+      "repo": "https://github.com/MichSchli/AVeriTeC",
+      "task": "Claim verdict PLUS retrieved justifying evidence",
+      "official_metric": "Official AVeriTeC composite score from eval.py",
+      "license": "CC BY-NC 4.0 (noncommercial)",
+      "commercial_use": "RESTRICTED",
+      "acquisition": "Do not embed dataset in commercial app without permission. Benchmark offline under allowed use; run official eval.py."
+    },
+    {
+      "id": "scifact",
+      "title": "SciFact: scientific claim verification",
+      "competency": "verification",
+      "official_url": "https://github.com/allenai/scifact",
+      "repo": "https://github.com/allenai/scifact",
+      "task": "Retrieve abstract/rationale and classify SUPPORT/CONTRADICT/NEI",
+      "official_metric": "Official evidence/rationale and label scores",
+      "license": "Claims CC BY 4.0; abstracts ODC-By 1.0; code Apache-2.0",
+      "commercial_use": "CONDITIONAL",
+      "acquisition": "Acquire official releases, attribute records correctly and apply the three separate licensing terms."
+    },
+    {
+      "id": "cladder",
+      "title": "CLadder: causal reasoning",
+      "competency": "causal",
+      "official_url": "https://github.com/causalNLP/cladder",
+      "repo": "https://github.com/causalNLP/cladder",
+      "task": "Statistical, interventional, counterfactual causal questions",
+      "official_metric": "Question-answer accuracy by query type/rung",
+      "license": "MIT code; dataset rights to review",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Use published balanced dataset and original answer mapping; stratify query type and rung."
+    },
+    {
+      "id": "corr2cause",
+      "title": "Corr2Cause: causation vs correlation",
+      "competency": "causal",
+      "official_url": "https://github.com/causalNLP/corr2cause",
+      "repo": "https://github.com/causalNLP/corr2cause",
+      "task": "Identify unsupported causal claims from correlation patterns",
+      "official_metric": "Original classification accuracy by causal relation",
+      "license": "Review LICENSE and dataset rights",
+      "commercial_use": "REVIEW_REQUIRED",
+      "acquisition": "Acquire officially released data; separate training from locked tests."
+    },
+    {
+      "id": "factscore",
+      "title": "FActScore: factual precision of long-form generation",
+      "competency": "verification",
+      "official_url": "https://github.com/shmsw25/FActScore",
+      "repo": "https://github.com/shmsw25/FActScore",
+      "task": "Atomic fact decomposition with source support",
+      "official_metric": "Supported atomic facts / all extracted atomic facts; monitor response ratio",
+      "license": "MIT code; dataset/knowledge-source rights separate",
+      "commercial_use": "CONDITIONAL",
+      "acquisition": "Run as supporting diagnostic; not a substitute for claim-evidence human-reviewed judgments."
+    }
+  ]
+}

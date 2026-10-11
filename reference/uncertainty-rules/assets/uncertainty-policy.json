@@ -1,0 +1,107 @@
+{
+  "policy_version": "1.0.0",
+  "common_schema_compatibility": ">=1.0.0 <2.0.0",
+  "principles": [
+    "SEPARATE_UNCERTAINTY_DIMENSIONS",
+    "OBSERVATION_DOES_NOT_PROVE_EFFECT",
+    "POPULATION_EVIDENCE_DOES_NOT_PROVE_PERSON_ACTIVATION",
+    "NO_DUPLICATE_EVIDENCE_INFLATION",
+    "DOWNSTREAM_INHERITS_LOAD_BEARING_UNCERTAINTY",
+    "WEAKEST_INDISPENSABLE_LINK_CAPS_PATHWAY",
+    "SCOPE_REQUIRES_EXPLICIT_TRANSPORT",
+    "ABSENCE_OF_EVIDENCE_IS_NOT_CONTRADICTION",
+    "ALLOW_UNRESOLVED_AMBIGUITY",
+    "INTENT_IS_SEPARATE",
+    "CONFIDENCE_IS_CLASSIFICATION_CERTAINTY",
+    "UNKNOWN_IS_VALID"
+  ],
+  "enums": {
+    "epistemic_status": [
+      "OBSERVED",
+      "ANNOTATED",
+      "DERIVED",
+      "INFERRED",
+      "HYPOTHESIZED",
+      "REPORTED",
+      "UNKNOWN"
+    ],
+    "verification_status": [
+      "VERIFIED",
+      "VERIFIED_WITH_QUALIFICATION",
+      "CONTRADICTED",
+      "UNVERIFIED",
+      "OUTDATED",
+      "UNRESOLVED",
+      "NOT_APPLICABLE"
+    ],
+    "evidence_strength": [
+      "ESTABLISHED",
+      "SUPPORTED",
+      "PLAUSIBLE",
+      "SPECULATIVE",
+      "MIXED",
+      "UNKNOWN"
+    ],
+    "evidence_basis": [
+      "EXPERIMENTAL",
+      "MECHANISTIC",
+      "OBSERVATIONAL",
+      "EXTRAPOLATED",
+      "THEORETICAL",
+      "DOCUMENTARY",
+      "SELF_REPORT",
+      "BEHAVIORAL",
+      "MIXED",
+      "UNKNOWN",
+      "NOT_APPLICABLE"
+    ],
+    "person_specific_activation": [
+      "NOT_ASSESSED",
+      "CANDIDATE",
+      "EPISODE_CONSISTENT",
+      "SUPPORTED_IN_EPISODE",
+      "EXPERIMENTALLY_IDENTIFIED",
+      "CONTRADICTED_IN_EPISODE"
+    ],
+    "person_evidence_mode": [
+      "MEASURED",
+      "SELF_REPORTED",
+      "BEHAVIORALLY_SUPPORTED",
+      "INDIRECTLY_INFERRED",
+      "NONE",
+      "UNKNOWN"
+    ],
+    "intent_status": [
+      "EXPLICIT",
+      "DOCUMENTED",
+      "STRONGLY_INFERRED",
+      "WEAKLY_INFERRED",
+      "UNKNOWN"
+    ],
+    "dependency_status": [
+      "COMPLETE",
+      "DEPENDENCY_INCOMPLETE",
+      "REANALYSIS_REQUIRED",
+      "REVIEW_REQUIRED"
+    ]
+  },
+  "confidence": {
+    "range": [
+      0.0,
+      1.0
+    ],
+    "max_decimal_places": 2,
+    "semantics": "certainty that the assigned classification/status is appropriate given the available record; not truth probability",
+    "may_not_upgrade_other_statuses": true
+  },
+  "hard_rules": {
+    "artifact_only_person_activation_max": "CANDIDATE",
+    "missing_evidence_default_verification": "UNVERIFIED",
+    "fact_contradiction_requires_direct_conflicting_evidence": true,
+    "new_evidence_required_for_status_upgrade": true,
+    "independent_lineage_required_for_corroboration_count": true,
+    "training_excludes_review_required_dimensions": true,
+    "intent_not_inferred_from_tactic_alone": true,
+    "composite_certainty_score_forbidden": true
+  }
+}

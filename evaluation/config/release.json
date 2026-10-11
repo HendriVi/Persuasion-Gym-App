@@ -1,0 +1,109 @@
+{
+  "policy_version": "1.0.0",
+  "floor": 0.95,
+  "stretch": 0.97,
+  "familywise_alpha": 0.05,
+  "min_independent_runs": 5,
+  "min_total_cases": 1600,
+  "min_cases_per_competency": 200,
+  "min_distinct_families_per_slice": 30,
+  "required_competencies": [
+    "rhetoric",
+    "argument",
+    "verification",
+    "causal",
+    "intent",
+    "level_separation",
+    "manipulation",
+    "systems"
+  ],
+  "required_slices": [
+    {
+      "name": "political",
+      "field": "domain",
+      "value": "politics",
+      "min_cases": 100
+    },
+    {
+      "name": "nonpolitical",
+      "field": "domain",
+      "value": "nonpolitical",
+      "min_cases": 100
+    },
+    {
+      "name": "high_ambiguity",
+      "field": "ambiguity",
+      "value": "high",
+      "min_cases": 100
+    },
+    {
+      "name": "new_context_transfer",
+      "field": "transfer",
+      "value": "cross_domain",
+      "min_cases": 100
+    },
+    {
+      "name": "uncongenial_political_mirror",
+      "field": "political_mirror",
+      "value": "mirror",
+      "min_cases": 100
+    },
+    {
+      "name": "adversarial",
+      "field": "adversarial",
+      "value": "yes",
+      "min_cases": 100
+    }
+  ],
+  "max_ece": 0.05,
+  "required_cross_slices": [
+    {
+      "name": "rhetoric_on_political_messages",
+      "where": {
+        "competency": "rhetoric",
+        "domain": "politics"
+      },
+      "min_cases": 150
+    },
+    {
+      "name": "intent_on_political_messages",
+      "where": {
+        "competency": "intent",
+        "domain": "politics"
+      },
+      "min_cases": 150
+    },
+    {
+      "name": "causal_on_political_messages",
+      "where": {
+        "competency": "causal",
+        "domain": "politics"
+      },
+      "min_cases": 150
+    },
+    {
+      "name": "verification_on_political_messages",
+      "where": {
+        "competency": "verification",
+        "domain": "politics"
+      },
+      "min_cases": 150
+    },
+    {
+      "name": "manipulation_on_political_messages",
+      "where": {
+        "competency": "manipulation",
+        "domain": "politics"
+      },
+      "min_cases": 150
+    },
+    {
+      "name": "level_separation_under_adversarial",
+      "where": {
+        "competency": "level_separation",
+        "adversarial": "yes"
+      },
+      "min_cases": 150
+    }
+  ]
+}
