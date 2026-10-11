@@ -1,0 +1,108 @@
+{
+  "schema_version": "0.1.0-proposal",
+  "feature": "social-identity-belonging",
+  "status": "PUBLIC_EXPLORATORY_UNGRADED",
+  "graded_eligible": false,
+  "synthetic": true,
+  "contains_gold_answers": false,
+  "contains_holdouts": false,
+  "disclaimer": "Synthetic public teaching seeds only. Not a validated answer key or production training item. All feedback is ungraded until independent blind adjudication and release controls are satisfied.",
+  "items": [
+    {
+      "id": "sib-explore-01",
+      "stage": 1,
+      "kind": "moral_eligibility",
+      "fictional": true,
+      "vignette": "At a fictional school-board meeting, a speaker says: \"Everyone who genuinely cares about students supports Plan P.\"",
+      "independent_evidence": "No factual evidence for Plan P is supplied.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Identify moral-identity framing without equating the cue with proven manipulation or an observed psychological response."
+    },
+    {
+      "id": "sib-explore-02",
+      "stage": 2,
+      "kind": "injunctive_norm_and_sanction",
+      "fictional": true,
+      "vignette": "An imagined volunteer coordinator says: \"Our team expects loyal members to endorse Schedule Q. People who won't sign will no longer be invited to organize events.\"",
+      "independent_evidence": "No independent evidence of the merits of Schedule Q is supplied.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Differentiate explicit social sanction from a statement about what most people do; do not infer inner belief change."
+    },
+    {
+      "id": "sib-explore-03",
+      "stage": 3,
+      "kind": "benign_identity_appeal",
+      "fictional": true,
+      "vignette": "An imagined neighborhood group says: \"We value mutual help. If you agree and have time, join Saturday's optional litter cleanup.\"",
+      "independent_evidence": "There is no claim that members who decline are morally inferior and no threatened sanction.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Recognize an identity appeal that may be voluntary and legitimate. Avoid labeling all identity references manipulation."
+    },
+    {
+      "id": "sib-explore-04A",
+      "stage": 4,
+      "kind": "mirrored_identity_evidence",
+      "pair_id": "sib-neutral-group-01",
+      "condition": "in_role_team",
+      "fictional": true,
+      "transient_role": "For this practice scenario, imagine being assigned to Team Cedar. This is a fictional role and should never be saved as a personal identity.",
+      "vignette": "The Team Cedar spokesperson endorses Option P for a fictional local library.",
+      "independent_evidence": "Synthetic evidence card: Option P would extend library opening hours by 2 hours on one weekday and reduce another day's hours by 2 hours. No change to weekly opening hours is projected. Patron usage data and staff preference data are unavailable.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Evaluate the trade-off before using group endorsement as evidence. Compare with the matched variant only after both answers are frozen."
+    },
+    {
+      "id": "sib-explore-04B",
+      "stage": 4,
+      "kind": "mirrored_identity_evidence",
+      "pair_id": "sib-neutral-group-01",
+      "condition": "other_role_team",
+      "fictional": true,
+      "transient_role": "For this practice scenario, imagine being assigned to Team Cedar. This is a fictional role and should never be saved as a personal identity.",
+      "vignette": "The Team Slate spokesperson endorses Option P for a fictional local library.",
+      "independent_evidence": "Synthetic evidence card: Option P would extend library opening hours by 2 hours on one weekday and reduce another day's hours by 2 hours. No change to weekly opening hours is projected. Patron usage data and staff preference data are unavailable.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Evaluate the trade-off before using group endorsement as evidence. Compare with the matched variant only after both answers are frozen."
+    },
+    {
+      "id": "sib-explore-05",
+      "stage": 5,
+      "kind": "transfer_workplace",
+      "fictional": true,
+      "vignette": "During a fictional workplace meeting, a manager says: \"Real team players won't question the new process publicly. If you disagree, raise it with me privately.\"",
+      "independent_evidence": "The process's effectiveness, the manager's prior behavior, and whether private feedback is meaningfully considered are unspecified.",
+      "questions": [
+        "Identify the exact social or identity cue in the quoted message. State the claim and any missing warrant.",
+        "What social/identity or motivational mechanisms are plausible? Give at least one alternative explanation and indicate what remains unknown.",
+        "Assess the argument's evidential support without inferring the speaker's intention or a listener's actual mental state.",
+        "What evidence would make you revise your conclusion? Give pre-feedback confidence as a number from 0 to 100."
+      ],
+      "instructional_goal": "Examine contextual alternatives (workflow facilitation, conformity pressure, implied sanction), evidence limits, and proportional responses."
+    }
+  ]
+}
