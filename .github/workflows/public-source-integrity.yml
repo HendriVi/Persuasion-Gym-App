@@ -1,0 +1,19 @@
+name: Public source integrity (not model qualification)
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  public-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify canonical public source checksums
+        run: python scripts/check_source_integrity.py
+      - name: Verify public-only source and ungraded curriculum
+        run: python -m unittest discover -s tests -p 'test_public_integrity.py' -v
