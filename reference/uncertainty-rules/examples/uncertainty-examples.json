@@ -1,0 +1,53 @@
+{
+  "example_id": "uncertainty_example_001",
+  "artifact_text": "Nine out of ten doctors recommend X. Order now before supplies run out.",
+  "assertions": [
+    {
+      "id": "as_rhet_001",
+      "statement": "The message contains an authority/consensus cue.",
+      "epistemic_status": "ANNOTATED",
+      "verification_status": "NOT_APPLICABLE",
+      "evidence_strength": "UNKNOWN",
+      "person_specific_activation": "NOT_ASSESSED",
+      "intent_status": "UNKNOWN",
+      "confidence": 0.96
+    },
+    {
+      "id": "as_fact_001",
+      "statement": "Nine out of ten doctors recommend X.",
+      "epistemic_status": "REPORTED",
+      "verification_status": "UNVERIFIED",
+      "evidence_strength": "UNKNOWN",
+      "person_specific_activation": "NOT_ASSESSED",
+      "intent_status": "UNKNOWN",
+      "confidence": 0.98
+    },
+    {
+      "id": "as_mech_001",
+      "statement": "Source-credibility weighting could contribute to persuasion.",
+      "epistemic_status": "HYPOTHESIZED",
+      "verification_status": "NOT_APPLICABLE",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": [
+        "EXPERIMENTAL",
+        "OBSERVATIONAL"
+      ],
+      "person_specific_activation": "CANDIDATE",
+      "person_evidence_mode": "NONE",
+      "intent_status": "UNKNOWN",
+      "confidence": 0.9,
+      "note": "High confidence in classification does not mean the mechanism operated in this audience."
+    },
+    {
+      "id": "as_intent_001",
+      "statement": "The communicator knowingly fabricated scarcity to manipulate buyers.",
+      "epistemic_status": "UNKNOWN",
+      "verification_status": "UNVERIFIED",
+      "evidence_strength": "UNKNOWN",
+      "person_specific_activation": "NOT_ASSESSED",
+      "intent_status": "UNKNOWN",
+      "confidence": 0.99,
+      "note": "The analyst is highly confident that intent cannot be established from the artifact alone."
+    }
+  ]
+}

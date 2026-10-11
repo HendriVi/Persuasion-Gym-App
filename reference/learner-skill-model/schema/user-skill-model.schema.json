@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persuasion.gym/schema/user-skill-model/0.1.0",
+  "title": "Persuasion Gym User Skill Model",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","learner_id","created_at","updated_at","attempts","skills","recurring_error_patterns","revision_events"],
+  "properties": {
+    "schema_version": {"const":"0.1.0"},
+    "learner_id": {"type":"string","minLength":1},
+    "created_at": {"type":"string","format":"date-time"},
+    "updated_at": {"type":"string","format":"date-time"},
+    "attempts": {"type":"array","items":{"$ref":"#/$defs/AttemptEvidence"}},
+    "skills": {"type":"array","items":{"$ref":"#/$defs/SkillState"}},
+    "recurring_error_patterns": {"type":"array","items":{"$ref":"#/$defs/ErrorPattern"}},
+    "revision_events": {"type":"array","items":{"$ref":"#/$defs/RevisionEvent"}},
+    "next_target_recommendations": {"type":"array","items":{"$ref":"#/$defs/Recommendation"}}
+  },
+  "$defs": {
+    "AttemptEvidence": {
+      "type":"object","additionalProperties":false,
+      "required":["attempt_id","timestamp","item_id","answer_key_version","answer_key_status","skill_ids","domain","modality","training_mode","transfer_level","delayed_retrieval","assistance_level","committed_before_feedback","confidence_captured_before_feedback","mastery_eligible","dimensions"],
+      "properties": {
+        "attempt_id":{"type":"string"},
+        "timestamp":{"type":"string","format":"date-time"},
+        "item_id":{"type":"string"},
+        "answer_key_version":{"type":"string"},
+        "answer_key_status":{"enum":["FROZEN_VALID","REVIEW_REQUIRED","INVALIDATED","UNRESOLVED"]},
+        "skill_ids":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string"}},
+        "domain":{"type":"string"},
+        "modality":{"enum":["TEXT","IMAGE","AUDIO","VIDEO","MULTIMODAL","OTHER"]},
+        "training_mode":{"enum":["DETECT","DECOMPOSE","MECHANISM","DISCRIMINATE","VERIFY","COUNTERANALYSE","COUNTERFRAME","RESIST","SYSTEMS_MAP","PRODUCE","TRANSFER"]},
+        "transfer_level":{"enum":["NONE","NEAR","CROSS_DOMAIN","CROSS_MODALITY","FAR"]},
+        "transfer_metadata":{"$ref":"#/$defs/TransferMetadata"},
+        "delayed_retrieval":{"type":"boolean"},
+        "delay_days":{"type":["number","null"],"minimum":0},
+        "assistance_level":{"enum":["UNAIDED","CONCEPTUAL_CUE","CONTRAST_CUE","PARTIAL_STRUCTURE","EXPLICIT_EXPLANATION"]},
+        "committed_before_feedback":{"type":"boolean"},
+        "confidence_captured_before_feedback":{"type":"boolean"},
+        "mastery_eligible":{"type":"boolean"},
+        "dimensions":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/DimensionResult"}},
+        "notes":{"type":"string"}
+      }
+    },
+    "DimensionResult": {
+      "type":"object","additionalProperties":false,
+      "required":["dimension_id","skill_id","score","correct_binary","confidence","error_tags","scoreable"],
+      "properties": {
+        "dimension_id":{"type":"string"},
+        "skill_id":{"type":"string"},
+        "score":{"type":"number","minimum":0,"maximum":1},
+        "correct_binary":{"type":["boolean","null"]},
+        "confidence":{"type":["integer","null"],"minimum":0,"maximum":100},
+        "error_tags":{"type":"array","uniqueItems":true,"items":{"type":"string"}},
+        "scoreable":{"type":"boolean"},
+        "critical_error":{"type":"boolean","default":false}
+      }
+    },
+    "TransferMetadata": {
+      "type":"object","additionalProperties":false,
+      "properties": {
+        "origin_domain":{"type":["string","null"]},
+        "current_domain":{"type":["string","null"]},
+        "origin_modality":{"type":["string","null"]},
+        "current_modality":{"type":["string","null"]},
+        "source_type_changed":{"type":"boolean"},
+        "emotional_tone_changed":{"type":"boolean"},
+        "explicitness_changed":{"type":"boolean"},
+        "social_context_changed":{"type":"boolean"},
+        "distractor_structure_changed":{"type":"boolean"}
+      }
+    },
+    "SkillState": {
+      "type":"object","additionalProperties":false,
+      "required":["skill_id","state","state_evidence_refs","summary","calibration","transfer","delayed_retrieval","context_slices","last_updated"],
+      "properties": {
+        "skill_id":{"type":"string"},
+        "state":{"enum":["UNSEEN","INTRODUCED","RETRIEVING","DISCRIMINATING","PROVISIONAL_MASTERY","TRANSFER_VERIFIED","DELAYED_VERIFIED","NEEDS_REPAIR"]},
+        "state_evidence_refs":{"type":"array","items":{"type":"string"}},
+        "summary":{"$ref":"#/$defs/PerformanceSummary"},
+        "calibration":{"$ref":"#/$defs/CalibrationSummary"},
+        "transfer":{"$ref":"#/$defs/TransferSummary"},
+        "delayed_retrieval":{"$ref":"#/$defs/DelaySummary"},
+        "context_slices":{"type":"array","items":{"$ref":"#/$defs/ContextSlice"}},
+        "last_updated":{"type":"string","format":"date-time"}
+      }
+    },
+    "PerformanceSummary": {
+      "type":"object","additionalProperties":false,
+      "required":["eligible_attempts","unaided_attempts","rolling_attempts","rolling_accuracy","high_confidence_errors"],
+      "properties": {
+        "eligible_attempts":{"type":"integer","minimum":0},
+        "unaided_attempts":{"type":"integer","minimum":0},
+        "rolling_attempts":{"type":"integer","minimum":0},
+        "rolling_accuracy":{"type":["number","null"],"minimum":0,"maximum":1},
+        "high_confidence_errors":{"type":"integer","minimum":0}
+      }
+    },
+    "CalibrationSummary": {
+      "type":"object","additionalProperties":false,
+      "required":["n","label","mean_brier","mean_signed_error","mean_absolute_error"],
+      "properties": {
+        "n":{"type":"integer","minimum":0},
+        "label":{"enum":["INSUFFICIENT_DATA","WELL_CALIBRATED","OVERCONFIDENT_PATTERN","UNDERCONFIDENT_PATTERN","MIXED"]},
+        "mean_brier":{"type":["number","null"],"minimum":0,"maximum":1},
+        "mean_signed_error":{"type":["number","null"],"minimum":-1,"maximum":1},
+        "mean_absolute_error":{"type":["number","null"],"minimum":0,"maximum":1}
+      }
+    },
+    "TransferSummary": {
+      "type":"object","additionalProperties":false,
+      "required":["eligible_transfer_attempts","distinct_transfer_contexts","transfer_accuracy","latest_two_no_critical_overclaim"],
+      "properties": {
+        "eligible_transfer_attempts":{"type":"integer","minimum":0},
+        "distinct_transfer_contexts":{"type":"integer","minimum":0},
+        "transfer_accuracy":{"type":["number","null"],"minimum":0,"maximum":1},
+        "latest_two_no_critical_overclaim":{"type":["boolean","null"]}
+      }
+    },
+    "DelaySummary": {
+      "type":"object","additionalProperties":false,
+      "required":["eligible_delayed_attempts","distinct_dates","latest_delayed_correct"],
+      "properties": {
+        "eligible_delayed_attempts":{"type":"integer","minimum":0},
+        "distinct_dates":{"type":"integer","minimum":0},
+        "latest_delayed_correct":{"type":["boolean","null"]}
+      }
+    },
+    "ContextSlice": {
+      "type":"object","additionalProperties":false,
+      "required":["context_key","attempts","accuracy"],
+      "properties": {
+        "context_key":{"type":"string"},
+        "attempts":{"type":"integer","minimum":0},
+        "accuracy":{"type":["number","null"],"minimum":0,"maximum":1}
+      }
+    },
+    "ErrorPattern": {
+      "type":"object","additionalProperties":false,
+      "required":["pattern_id","skill_id","error_tag","status","occurrences","opportunities","attempt_refs","contexts","first_seen","last_seen"],
+      "properties": {
+        "pattern_id":{"type":"string"},
+        "skill_id":{"type":"string"},
+        "error_tag":{"type":"string"},
+        "status":{"enum":["OPEN","IMPROVING","RESOLVED"]},
+        "occurrences":{"type":"integer","minimum":0},
+        "opportunities":{"type":"integer","minimum":0},
+        "attempt_refs":{"type":"array","items":{"type":"string"}},
+        "contexts":{"type":"array","items":{"type":"string"}},
+        "first_seen":{"type":"string","format":"date-time"},
+        "last_seen":{"type":"string","format":"date-time"}
+      }
+    },
+    "RevisionEvent": {
+      "type":"object","additionalProperties":false,
+      "required":["revision_id","timestamp","reason","affected_attempt_refs"],
+      "properties": {
+        "revision_id":{"type":"string"},
+        "timestamp":{"type":"string","format":"date-time"},
+        "reason":{"type":"string"},
+        "affected_attempt_refs":{"type":"array","items":{"type":"string"}}
+      }
+    },
+    "Recommendation": {
+      "type":"object","additionalProperties":false,
+      "required":["skill_id","priority","reason","evidence_refs"],
+      "properties": {
+        "skill_id":{"type":"string"},
+        "priority":{"enum":["LOW","MEDIUM","HIGH","CRITICAL"]},
+        "reason":{"type":"string"},
+        "evidence_refs":{"type":"array","items":{"type":"string"}}
+      }
+    }
+  }
+}

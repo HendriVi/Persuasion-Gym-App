@@ -1,0 +1,702 @@
+{
+  "schema_version": "0.1.0",
+  "analysis_id": "ana_demo001",
+  "created_at": "2026-10-07T20:00:00+03:00",
+  "ontology_version": "0.1.0",
+  "artifact": {
+    "artifact_id": "art_demo001",
+    "artifact_type": "AD",
+    "language": "en",
+    "completeness": "COMPLETE",
+    "provenance_status": "KNOWN",
+    "communicator_refs": [],
+    "audience_refs": [],
+    "context_ref": null,
+    "available_modalities": [
+      "TEXT"
+    ],
+    "unavailable_modalities": [],
+    "segments": [
+      {
+        "segment_id": "seg_001",
+        "unit": "SPAN",
+        "text": "9 out of 10 doctors recommend X. Supplies are limited. Order now.",
+        "anchor": "full text",
+        "location": "line 1",
+        "channels": [
+          "TEXT"
+        ],
+        "parent_segment_ref": null
+      }
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "cl_001",
+      "text": "9 out of 10 doctors recommend X.",
+      "segment_refs": [
+        "seg_001"
+      ],
+      "role": "EXPLICIT",
+      "claim_type": "FACTUAL",
+      "origin": "ARTIFACT",
+      "materiality": "HIGH",
+      "verification_record_ref": "ver_001",
+      "assertion_refs": [
+        "as_001"
+      ]
+    },
+    {
+      "claim_id": "cl_002",
+      "text": "Supplies are limited.",
+      "segment_refs": [
+        "seg_001"
+      ],
+      "role": "EXPLICIT",
+      "claim_type": "CURRENT_STATE",
+      "origin": "ARTIFACT",
+      "materiality": "HIGH",
+      "verification_record_ref": "ver_002",
+      "assertion_refs": [
+        "as_002"
+      ]
+    }
+  ],
+  "rhetoric": {
+    "module_version": "0.1.0",
+    "dependency_status": "COMPLETE",
+    "analysis_mode": "STANDARD",
+    "annotations": [
+      {
+        "annotation_id": "rf_001",
+        "segment_ref": "seg_001",
+        "taxonomy_id": "SRC.authority_cue",
+        "family": "SRC",
+        "status": "OBSERVED",
+        "rationale": "Professional group is invoked as an endorsement source.",
+        "functions": [
+          "SOURCE_POSITIONING"
+        ],
+        "salience": "HIGH",
+        "claim_refs": [
+          "cl_001"
+        ],
+        "action_refs": [],
+        "actor_refs": [],
+        "possible_overlaps": [
+          "SOC.social_proof_cue"
+        ],
+        "alternative_readings": [],
+        "not_inferred": [
+          "actual expertise",
+          "actual consensus",
+          "audience trust"
+        ],
+        "assertion_refs": [
+          "as_003"
+        ]
+      },
+      {
+        "annotation_id": "rf_002",
+        "segment_ref": "seg_001",
+        "taxonomy_id": "SOC.social_proof_cue",
+        "family": "SOC",
+        "status": "OBSERVED",
+        "rationale": "The message invokes apparent majority endorsement.",
+        "functions": [
+          "CONSENSUS_SIGNALING"
+        ],
+        "salience": "HIGH",
+        "claim_refs": [
+          "cl_001"
+        ],
+        "action_refs": [],
+        "actor_refs": [],
+        "possible_overlaps": [
+          "SRC.authority_cue"
+        ],
+        "alternative_readings": [],
+        "not_inferred": [
+          "actual consensus",
+          "conformity"
+        ],
+        "assertion_refs": [
+          "as_004"
+        ]
+      },
+      {
+        "annotation_id": "rf_003",
+        "segment_ref": "seg_001",
+        "taxonomy_id": "ACT.scarcity_cue",
+        "family": "ACT",
+        "status": "OBSERVED",
+        "rationale": "Limited supply is explicitly asserted.",
+        "functions": [
+          "ACTION_PRESSURE"
+        ],
+        "salience": "HIGH",
+        "claim_refs": [
+          "cl_002"
+        ],
+        "action_refs": [],
+        "actor_refs": [],
+        "possible_overlaps": [
+          "ACT.urgency_cue"
+        ],
+        "alternative_readings": [],
+        "not_inferred": [
+          "real scarcity",
+          "felt urgency"
+        ],
+        "assertion_refs": [
+          "as_005"
+        ]
+      },
+      {
+        "annotation_id": "rf_004",
+        "segment_ref": "seg_001",
+        "taxonomy_id": "ACT.explicit_call_to_action",
+        "family": "ACT",
+        "status": "OBSERVED",
+        "rationale": "The message explicitly asks the audience to order.",
+        "functions": [
+          "ACTION_PROMPT"
+        ],
+        "salience": "HIGH",
+        "claim_refs": [],
+        "action_refs": [],
+        "actor_refs": [],
+        "possible_overlaps": [],
+        "alternative_readings": [],
+        "not_inferred": [
+          "compliance"
+        ],
+        "assertion_refs": [
+          "as_006"
+        ]
+      }
+    ],
+    "architecture": {
+      "opening_function": "credibility/consensus positioning",
+      "problem_construction": null,
+      "source_positioning": "doctor endorsement",
+      "evidence_pattern": "numerical consensus claim",
+      "social_identity_pattern": null,
+      "affective_pattern": null,
+      "option_structure": null,
+      "action_transition": "scarcity statement followed by direct CTA",
+      "recurrence_pattern": null,
+      "closing_function": "direct CTA",
+      "synthesis": "Credibility/consensus cueing is followed by scarcity and an explicit action prompt."
+    },
+    "higher_order_functions": {
+      "ethos": [
+        "rf_001"
+      ],
+      "pathos": [],
+      "logos": [
+        "rf_002"
+      ]
+    },
+    "limitations": []
+  },
+  "argument": {
+    "module_version": "0.1.0",
+    "dependency_status": "COMPLETE",
+    "arguments": [],
+    "findings": [],
+    "limitations": [
+      "No full argument audit included in this minimal example."
+    ]
+  },
+  "verification": {
+    "module_version": "0.1.0",
+    "dependency_status": "COMPLETE",
+    "records": [
+      {
+        "verification_id": "ver_001",
+        "claim_ref": "cl_001",
+        "status": "UNVERIFIED",
+        "time_sensitive": false,
+        "authoritative_source_refs": [],
+        "supporting_evidence_refs": [],
+        "contradicting_evidence_refs": [],
+        "accessed_at": null,
+        "scope": {
+          "population": null,
+          "context": "advertising claim",
+          "artifact_type": "AD",
+          "outcome": null,
+          "time_scale": null,
+          "domain": null
+        },
+        "qualification": "No source supplied.",
+        "correction": null,
+        "downstream_impact": "UNRESOLVED",
+        "assertion_refs": [
+          "as_007"
+        ]
+      },
+      {
+        "verification_id": "ver_002",
+        "claim_ref": "cl_002",
+        "status": "UNVERIFIED",
+        "time_sensitive": true,
+        "authoritative_source_refs": [],
+        "supporting_evidence_refs": [],
+        "contradicting_evidence_refs": [],
+        "accessed_at": null,
+        "scope": {
+          "population": null,
+          "context": "inventory claim",
+          "artifact_type": "AD",
+          "outcome": null,
+          "time_scale": "current",
+          "domain": null
+        },
+        "qualification": "Requires seller inventory evidence.",
+        "correction": null,
+        "downstream_impact": "UNRESOLVED",
+        "assertion_refs": [
+          "as_008"
+        ]
+      }
+    ],
+    "gate": "UNRESOLVED",
+    "limitations": [
+      "No authoritative sources were supplied for the demonstration claims."
+    ]
+  },
+  "mechanisms": {
+    "module_version": "0.1.0",
+    "dependency_status": "COMPLETE",
+    "pathways": [
+      {
+        "pathway_id": "mp_001",
+        "input_feature_refs": [
+          "rf_001"
+        ],
+        "registry_entry_id": "EPI.source_credibility_weighting",
+        "registry_entry_kind": "MECHANISM",
+        "ranking": "BEST_SUPPORTED_CANDIDATE",
+        "target_constructs": [
+          "perceived source credibility"
+        ],
+        "mechanism_description": "A perceived-credibility pathway is a candidate explanation for how authority cues may alter evidential weighting.",
+        "mediators": [],
+        "moderators_present": [],
+        "moderators_absent": [],
+        "moderators_unknown": [
+          "source relevance",
+          "audience expertise"
+        ],
+        "confounders_or_alternative_causes": [
+          "pre-existing brand preference"
+        ],
+        "proximal_outcomes": [
+          "greater evidential weight on communicated claim"
+        ],
+        "distal_outcomes": [
+          "claim acceptance"
+        ],
+        "temporal_order_expected": [
+          "cue exposure before credibility judgment before belief update"
+        ],
+        "population_evidence": {
+          "effect_grade": "E3",
+          "mechanism_grade": "M2",
+          "population_scope": "relevant persuasion populations",
+          "domain_scope": "source credibility",
+          "notes": "Illustrative registry grade for schema demonstration only."
+        },
+        "context_fit": "UNKNOWN",
+        "person_specific_activation": "CANDIDATE",
+        "person_evidence_mode": "NONE",
+        "supporting_episode_evidence_refs": [],
+        "contradictory_episode_evidence_refs": [],
+        "alternative_pathway_refs": [],
+        "discriminating_predictions": [
+          "Effect should weaken if authority is revealed as irrelevant to the domain."
+        ],
+        "evidence_that_would_strengthen": [
+          "measured credibility change preceding belief change"
+        ],
+        "evidence_that_would_weaken": [
+          "no credibility change despite cue"
+        ],
+        "best_discrimination_test": "Measure perceived credibility and compare relevant vs irrelevant authority cues.",
+        "unresolved_links": [
+          "No person-level response data."
+        ],
+        "assertion_refs": [
+          "as_009"
+        ]
+      }
+    ],
+    "best_supported_pathway_refs": [
+      "mp_001"
+    ],
+    "co_plausible_pathway_refs": [],
+    "disfavored_pathway_refs": [],
+    "unresolved_questions": [
+      "Did the audience perceive the doctors as credible and relevant?"
+    ],
+    "what_is_not_established": [
+      "That the cue changed trust or belief in any specific person."
+    ],
+    "limitations": [
+      "Artifact-only mechanism inference."
+    ]
+  },
+  "systems": {
+    "module_version": "0.1.0",
+    "dependency_status": "COMPLETE",
+    "question": "How could the ad enter a broader influence system?",
+    "boundary": {
+      "units_of_analysis": [
+        "message",
+        "audience",
+        "sharing environment"
+      ],
+      "inside": [
+        "artifact",
+        "audience response",
+        "sharing"
+      ],
+      "outside": [
+        "long-run market structure"
+      ],
+      "exogenous_inputs": [],
+      "endogenous_variables": [],
+      "rationale": "Minimal illustrative boundary."
+    },
+    "variables": [],
+    "relations": [],
+    "loops": [],
+    "major_uncertainties": [
+      "No network/platform data."
+    ],
+    "discriminating_tests": [],
+    "what_is_not_established": [
+      "No feedback loop is established from this artifact alone."
+    ],
+    "limitations": [
+      "System analysis intentionally left sparse."
+    ]
+  },
+  "manipulation": {
+    "module_version": "0.1.0",
+    "dependency_status": "DEPENDENCY_INCOMPLETE",
+    "overall": "INDETERMINATE",
+    "dimensions": [],
+    "intent_status": "UNKNOWN",
+    "limitations": [
+      "Scarcity and consensus claims are unverified, so deception/manufactured urgency cannot yet be assessed."
+    ]
+  },
+  "countermeasures": [
+    {
+      "countermeasure_id": "cm_001",
+      "label": "Verify consensus and scarcity claims",
+      "countermeasure_type": "EVIDENCE_CHECK",
+      "target_refs": [
+        "cl_001",
+        "cl_002"
+      ],
+      "rationale": "The action pressure depends partly on two externally checkable claims.",
+      "evidence_strength": "SUPPORTED",
+      "evidence_refs": [],
+      "assertion_refs": [
+        "as_010"
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "assertion_id": "as_001",
+      "subject_ref": "cl_001",
+      "predicate": "expressed_in",
+      "object_ref": "seg_001",
+      "origin_skill": "artifact-intake",
+      "epistemic_status": "OBSERVED",
+      "evidence_strength": "ESTABLISHED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "UNVERIFIED",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 1.0,
+      "scope": {
+        "population": null,
+        "context": "artifact text",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_002",
+      "subject_ref": "cl_002",
+      "predicate": "expressed_in",
+      "object_ref": "seg_001",
+      "origin_skill": "artifact-intake",
+      "epistemic_status": "OBSERVED",
+      "evidence_strength": "ESTABLISHED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "UNVERIFIED",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 1.0,
+      "scope": {
+        "population": null,
+        "context": "artifact text",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_003",
+      "subject_ref": "rf_001",
+      "predicate": "annotates",
+      "object_ref": "seg_001",
+      "origin_skill": "persuasion-rhetorical-structure-analysis",
+      "epistemic_status": "ANNOTATED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 0.98,
+      "scope": {
+        "population": null,
+        "context": "artifact analysis",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_004",
+      "subject_ref": "rf_002",
+      "predicate": "annotates",
+      "object_ref": "seg_001",
+      "origin_skill": "persuasion-rhetorical-structure-analysis",
+      "epistemic_status": "ANNOTATED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 0.96,
+      "scope": {
+        "population": null,
+        "context": "artifact analysis",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_005",
+      "subject_ref": "rf_003",
+      "predicate": "annotates",
+      "object_ref": "seg_001",
+      "origin_skill": "persuasion-rhetorical-structure-analysis",
+      "epistemic_status": "ANNOTATED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 0.99,
+      "scope": {
+        "population": null,
+        "context": "artifact analysis",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_006",
+      "subject_ref": "rf_004",
+      "predicate": "annotates",
+      "object_ref": "seg_001",
+      "origin_skill": "persuasion-rhetorical-structure-analysis",
+      "epistemic_status": "ANNOTATED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 0.99,
+      "scope": {
+        "population": null,
+        "context": "artifact analysis",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    },
+    {
+      "assertion_id": "as_007",
+      "subject_ref": "cl_001",
+      "predicate": "has_verification_status",
+      "object_value": "UNVERIFIED",
+      "origin_skill": "persuasion-fact-check",
+      "epistemic_status": "DERIVED",
+      "evidence_strength": "UNKNOWN",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "UNVERIFIED",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 1.0,
+      "scope": {
+        "population": null,
+        "context": "fact check",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": null,
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": "No verifying source supplied in demo."
+    },
+    {
+      "assertion_id": "as_008",
+      "subject_ref": "cl_002",
+      "predicate": "has_verification_status",
+      "object_value": "UNVERIFIED",
+      "origin_skill": "persuasion-fact-check",
+      "epistemic_status": "DERIVED",
+      "evidence_strength": "UNKNOWN",
+      "evidence_basis": "DOCUMENTARY",
+      "verification_status": "UNVERIFIED",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 1.0,
+      "scope": {
+        "population": null,
+        "context": "fact check",
+        "artifact_type": "AD",
+        "outcome": null,
+        "time_scale": "current",
+        "domain": null
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": "No inventory evidence supplied in demo."
+    },
+    {
+      "assertion_id": "as_009",
+      "subject_ref": "rf_001",
+      "predicate": "may_recruit",
+      "object_value": "EPI.source_credibility_weighting",
+      "origin_skill": "persuasion-mechanism-analysis",
+      "epistemic_status": "HYPOTHESIZED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "MIXED",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": "CANDIDATE",
+      "intent_status": null,
+      "confidence": 0.75,
+      "scope": {
+        "population": "relevant persuasion populations",
+        "context": "authority cue exposure",
+        "artifact_type": "AD",
+        "outcome": "source credibility weighting",
+        "time_scale": "short",
+        "domain": "persuasion"
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": "Population-level candidate; no person-specific activation evidence."
+    },
+    {
+      "assertion_id": "as_010",
+      "subject_ref": "cm_001",
+      "predicate": "targets",
+      "object_value": [
+        "cl_001",
+        "cl_002"
+      ],
+      "origin_skill": "persuasion-gym-orchestrator",
+      "epistemic_status": "DERIVED",
+      "evidence_strength": "SUPPORTED",
+      "evidence_basis": "THEORETICAL",
+      "verification_status": "NOT_APPLICABLE",
+      "person_activation_status": null,
+      "intent_status": null,
+      "confidence": 0.9,
+      "scope": {
+        "population": null,
+        "context": "decision hygiene",
+        "artifact_type": "AD",
+        "outcome": "reduced uncertainty",
+        "time_scale": "immediate",
+        "domain": "persuasion analysis"
+      },
+      "evidence_refs": [],
+      "alternative_assertion_refs": [],
+      "notes": null
+    }
+  ],
+  "sources": [],
+  "evidence": [],
+  "training": null,
+  "routing": {
+    "flags": [
+      {
+        "route": "FACT_CHECK",
+        "reason": "Consensus and scarcity claims need authoritative verification before manipulation assessment.",
+        "affected_refs": [
+          "cl_001",
+          "cl_002"
+        ],
+        "required_action": "Verify doctor-consensus and inventory claims.",
+        "status": "OPEN"
+      }
+    ],
+    "overall_dependency_status": "DEPENDENCY_INCOMPLETE"
+  },
+  "metadata": {
+    "producer_versions": {
+      "persuasion-rhetorical-structure-analysis": "0.1.0",
+      "persuasion-mechanism-analysis": "0.1.0",
+      "persuasion-fact-check": "0.1.0"
+    },
+    "schema_compatibility": [
+      "0.1.x"
+    ],
+    "notes": [
+      "Demonstration fixture only; mechanism evidence grades are illustrative."
+    ],
+    "human_summary": "The ad combines an authority/consensus claim with scarcity and an explicit CTA; factual claims remain unverified, so manipulation is indeterminate.",
+    "human_summary_is_non_authoritative": true
+  }
+}

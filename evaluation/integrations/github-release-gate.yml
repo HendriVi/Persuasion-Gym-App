@@ -1,0 +1,33 @@
+# TEMPLATE ONLY. Copy to .github/workflows/release-gate.yml after integrating
+# the evaluation scripts. Do not enable or merge without a secure private-vault design.
+name: Persuasion Gym scientific release gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify benchmark controller (always)
+        run: |
+          python evaluation/scripts/check_package.py
+          python -m unittest discover -s evaluation/scripts -p 'test_*.py' -v
+      - name: Require securely supplied signed adjudicated test artifacts
+        shell: bash
+        run: |
+          test -s .private_evaluation/locked_holdout.jsonl || { echo 'BLOCKED: no independently adjudicated gold'; exit 2; }
+          test -s .private_evaluation/independent_judgments.jsonl || { echo 'BLOCKED: no model evaluations'; exit 2; }
+          test -s .private_evaluation/frozen_runs.json || { echo 'BLOCKED: no run manifest'; exit 2; }
+      - name: Five-run per-slice qualification
+        run: |
+          python evaluation/scripts/release_gate.py \
+            --manifest .private_evaluation/locked_holdout.jsonl \
+            --judgments .private_evaluation/independent_judgments.jsonl \
+            --runs .private_evaluation/frozen_runs.json \
+            --config evaluation/config/release.json \
+            --out evaluation/reports/release_report.json

@@ -1,15 +1,14 @@
-# Persuasion Gym — final app implementation
+# Persuasion Gym — authoritative implementation bootstrap
 
-**This is the NEW application repository**, separate from the older `HendriVi/persuasion-gym` project. No old code or architecture is authoritative by default.
+**Repository:** https://github.com/HendriVi/Persuasion-Gym-App  
+**Important:** this is the NEW final app repository. Older beta repository code is not a dependency.
 
-## Current status
+Start with [`AGENTS.md`](AGENTS.md) → [`CODEX.md`](CODEX.md) → [`PROJECT_SPEC.md`](PROJECT_SPEC.md) → [`SOURCE_ARTIFACT_MANIFEST.md`](SOURCE_ARTIFACT_MANIFEST.md) → [`COMPLETENESS_AUDIT.md`](COMPLETENESS_AUDIT.md), then [`ARCHITECTURE.md`](ARCHITECTURE.md), [`EVALUATION.md`](EVALUATION.md), [`REQUIREMENTS.md`](REQUIREMENTS.md), [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md), [`DECISIONS.md`](DECISIONS.md) and [`REPO_TREE.md`](REPO_TREE.md).
 
-- **Source-of-truth implementation package:** being transferred from the Persuasion Gym design conversation.
-- **Scientific benchmark status:** NOT EVALUATED; RELEASE BLOCKED.
-- **Master `persuasion-gym/SKILL.md`:** GATED until the specialist models qualify.
-- **Security:** this repository is PUBLIC. **Never commit** private test answers, holdouts, first-pass gold candidate labels, adjudication histories or signing credentials.
-- **First Codex task:** import the **PUBLIC-SAFE** Codex bootstrap `repo-root/` documentation/references only, then audit source integrity and make the Phase 0 plan. Do not import the complete benchmark ZIP.
+The source archive contains **316 files, 400 candidate benchmark cases, seven first-party specialist skills plus scientific rules, and the original 95–97% release controller**, but the public GitHub repository must NEVER contain hidden answer keys. The original full ZIP exists **only inside the user's downloadable offline restricted package**. Public-safe first-party canonical files are in `reference/` and the exact release controller instructions/code are in `evaluation/`.
 
-See `AGENTS.md`, `CODEX.md`, `PROJECT_SPEC.md`, `ARCHITECTURE.md`, `EVALUATION.md`, `REQUIREMENTS.md`, `DECISIONS.md`, `IMPLEMENTATION_PLAN.md`, `SOURCE_ARTIFACT_MANIFEST.md`, and `COMPLETENESS_AUDIT.md` once transferred.
+**Current honest state:** design recovered; application implementation not yet built in this repo; independently adjudicated gold and full specialist model evaluation missing; validated master persuasion-gym/SKILL.md not created; **RELEASE=BLOCKED**.
 
-Current empty-repo initialization is documentation only. No production skill, app, or validated score is claimed.
+**First nontechnical action:** upload the separate **PUBLIC-SAFE** `Persuasion-Gym-Codex-Public-Bootstrap.zip` (provided alongside the full offline package) to the root of the new GitHub repo. Then connect Codex to this repository and use [`FIRST_CODEX_PROMPT.md`](FIRST_CODEX_PROMPT.md). Codex imports the safe files, audits them, and stops before speculative application coding. Do **not** upload the full offline implementation archive.
+
+No benchmark source or library can **guarantee** ≥95% on every future unknown input. The strict release controller blocks unproven performance claims; its original v1.0.0 policy requires lower confidence bounds per mandatory cell across five frozen runs and forbids critical overclaims.

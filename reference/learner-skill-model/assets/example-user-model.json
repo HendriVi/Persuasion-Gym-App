@@ -1,0 +1,44 @@
+{
+  "schema_version":"0.1.0",
+  "learner_id":"learner_demo_001",
+  "created_at":"2026-10-08T07:00:00Z",
+  "updated_at":"2026-10-08T07:30:00Z",
+  "attempts":[
+    {
+      "attempt_id":"att_001","timestamp":"2026-10-01T09:00:00Z","item_id":"item_101","answer_key_version":"1.0","answer_key_status":"FROZEN_VALID",
+      "skill_ids":["MEC.activation_ceiling"],"domain":"advertising","modality":"TEXT","training_mode":"MECHANISM","transfer_level":"NONE",
+      "transfer_metadata":{"origin_domain":null,"current_domain":"advertising","origin_modality":null,"current_modality":"TEXT","source_type_changed":false,"emotional_tone_changed":false,"explicitness_changed":false,"social_context_changed":false,"distractor_structure_changed":false},
+      "delayed_retrieval":false,"delay_days":null,"assistance_level":"UNAIDED","committed_before_feedback":true,"confidence_captured_before_feedback":true,"mastery_eligible":true,
+      "dimensions":[{"dimension_id":"activation","skill_id":"MEC.activation_ceiling","score":0,"correct_binary":false,"confidence":90,"error_tags":["PERSON_ACTIVATION_OVERREACH","HIGH_CONFIDENCE_ERROR"],"scoreable":true,"critical_error":true}],"notes":"Artifact-only cue was treated as proof of person-specific activation."
+    },
+    {
+      "attempt_id":"att_002","timestamp":"2026-10-03T09:00:00Z","item_id":"item_102","answer_key_version":"1.0","answer_key_status":"FROZEN_VALID",
+      "skill_ids":["MEC.activation_ceiling"],"domain":"public_affairs","modality":"TEXT","training_mode":"DISCRIMINATE","transfer_level":"CROSS_DOMAIN",
+      "transfer_metadata":{"origin_domain":"advertising","current_domain":"public_affairs","origin_modality":"TEXT","current_modality":"TEXT","source_type_changed":true,"emotional_tone_changed":true,"explicitness_changed":false,"social_context_changed":true,"distractor_structure_changed":true},
+      "delayed_retrieval":false,"delay_days":null,"assistance_level":"UNAIDED","committed_before_feedback":true,"confidence_captured_before_feedback":true,"mastery_eligible":true,
+      "dimensions":[{"dimension_id":"activation","skill_id":"MEC.activation_ceiling","score":1,"correct_binary":true,"confidence":65,"error_tags":[],"scoreable":true,"critical_error":false}],"notes":"Correctly kept activation at candidate."
+    },
+    {
+      "attempt_id":"att_003","timestamp":"2026-10-08T07:20:00Z","item_id":"item_103","answer_key_version":"1.0","answer_key_status":"FROZEN_VALID",
+      "skill_ids":["MEC.activation_ceiling"],"domain":"health_wellness","modality":"VIDEO","training_mode":"TRANSFER","transfer_level":"CROSS_MODALITY",
+      "transfer_metadata":{"origin_domain":"advertising","current_domain":"health_wellness","origin_modality":"TEXT","current_modality":"VIDEO","source_type_changed":true,"emotional_tone_changed":true,"explicitness_changed":true,"social_context_changed":true,"distractor_structure_changed":true},
+      "delayed_retrieval":true,"delay_days":5,"assistance_level":"UNAIDED","committed_before_feedback":true,"confidence_captured_before_feedback":true,"mastery_eligible":true,
+      "dimensions":[{"dimension_id":"activation","skill_id":"MEC.activation_ceiling","score":1,"correct_binary":true,"confidence":75,"error_tags":[],"scoreable":true,"critical_error":false}],"notes":"Correct cross-modality application."
+    }
+  ],
+  "skills":[
+    {
+      "skill_id":"MEC.activation_ceiling","state":"RETRIEVING","state_evidence_refs":["att_001","att_002","att_003"],
+      "summary":{"eligible_attempts":3,"unaided_attempts":3,"rolling_attempts":3,"rolling_accuracy":0.6666666667,"high_confidence_errors":1},
+      "calibration":{"n":3,"label":"INSUFFICIENT_DATA","mean_brier":0.3108333333,"mean_signed_error":0.1,"mean_absolute_error":0.4},
+      "transfer":{"eligible_transfer_attempts":2,"distinct_transfer_contexts":2,"transfer_accuracy":1.0,"latest_two_no_critical_overclaim":true},
+      "delayed_retrieval":{"eligible_delayed_attempts":1,"distinct_dates":1,"latest_delayed_correct":true},
+      "context_slices":[],"last_updated":"2026-10-08T07:30:00Z"
+    }
+  ],
+  "recurring_error_patterns":[],
+  "revision_events":[],
+  "next_target_recommendations":[
+    {"skill_id":"MEC.activation_ceiling","priority":"HIGH","reason":"Continue discrimination and delayed retrieval; one prior high-confidence person-activation overreach remains in recent evidence.","evidence_refs":["att_001","att_002","att_003"]}
+  ]
+}
